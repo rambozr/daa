@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int power(int num1,int num2){
+    if(num2==0) return 1;
+int half= power(num1,num2/2);
+if(num2 %2 ==0){
+    return  half*half;
+}else{
+    return num1*half*half;
+}
+
+
+}
+int main(){
+int mul=power(2,10);
+cout<<mul<<endl;
+return 0;
+};
