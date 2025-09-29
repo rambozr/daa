@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    int n, freq=0, key;
+    cout<<"enter the value of n ";
+    cin>>n;
+    int arr[n];
+    cout<<"inter "<<n<<"elemnts: \n";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<"your array is \n";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<"enter the key element";
+    cin>>key;
+    for(int i=0;i<n;i++){
+        if(arr[i]==key){
+            freq++;
+        }
+    }
+    cout<<"total numner "<<freq<<endl;
+    return 0;
+}
