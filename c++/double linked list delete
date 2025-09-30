@@ -1,0 +1,75 @@
+#include<iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+    Node* prev;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+        prev = nullptr;
+    }
+};
+
+// forward traversal
+void traverseForward(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+    cout << endl;
+}
+
+// backward traversal
+void traverseBackward(Node* tail) {
+    while (tail != nullptr) {
+        cout << tail->data << " ";
+        tail = tail->prev;
+    }
+    cout << endl;
+}
+
+int main() {
+    // create nodes
+    Node* head = new Node(1);
+    Node* second = new Node(2);
+    Node* third = new Node(3);
+    Node* fourth = new Node(4);
+
+    // link forward
+    head->next = second;
+    second->next = third;
+    third->next = fourth;
+
+    // link backward
+    second->prev = head;
+    third->prev = second;
+    fourth->prev = third;
+
+    cout << "Before deletion (Forward): ";
+    traverseForward(head);
+
+    // delete first node
+    Node* temp = head;
+    head = head->next;   // move head
+    if (head != nullptr) {
+        head->prev = nullptr; // new head’s prev must be null
+    }
+    delete temp; // free memory
+
+    cout << "After deletion (Forward): ";
+    traverseForward(head);
+
+    cout << "After deletion (Backward): ";
+    traverseBackward(fourth); // tail is still 4
+    return 0;
+}
+
+
+  // delete last node (fourth here)
+    Node* tail = fourth;      // pointer to last node
+    tail = tail->prev;        // move to second last
+    delete tail->next;        // delete old last
+    tail->next = nullptr;    
