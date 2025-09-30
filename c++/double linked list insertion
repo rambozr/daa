@@ -1,0 +1,78 @@
+#include<iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+    Node* prev;  // extra pointer for DLL
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+        prev = nullptr;
+    }
+};
+
+// forward traversal
+void traverseForward(Node* head) {
+    while (head != nullptr) {
+        cout << head->data << " ";
+       // stop at last node (for backward later)
+        head = head->next;
+    }
+    cout << endl;
+}
+
+// backward traversal
+void traverseBackward(Node* tail) {
+    while (tail != nullptr) {
+        cout << tail->data << " ";
+        tail = tail->prev;
+    }
+    cout << endl;
+}
+
+int main() {
+    // create nodes
+    Node* head = new Node(1);
+    Node* second = new Node(2);
+    Node* third = new Node(3);
+    Node* fourth = new Node(4);
+
+    // link forward
+    head->next = second;
+    second->next = third;
+    third->next = fourth;
+
+    // link backward
+    second->prev = head;
+    third->prev = second;
+    fourth->prev = third;
+
+    Node* newnode=new Node(5);
+    newnode->next=head;
+    head->prev=newnode;
+    head=newnode;
+
+
+    cout << "Forward: ";
+    traverseForward(head);
+
+    cout << "Backward: ";
+    traverseBackward(fourth);
+
+    return 0;
+}
+
+//insert at end;
+    Node* newnode=new Node(5);
+    fourth->next=newnode;
+    newnode->prev=fourth;
+  
+
+    cout << "Forward: ";
+    traverseForward(head);
+
+    cout << "Backward: ";
+    traverseBackward(newnode);
+
